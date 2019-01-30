@@ -17,7 +17,7 @@ bm = BinanceSocketManager(client)
 symbol = "BTCUSDT"
 
 client = Client(PUBLIC_API_KEY, PRIVATE_API_KEY)
-data = client.get_historical_klines(symbol, Client.KLINE_INTERVAL_6HOUR, "{} day ago UTC".format(800))
+data = client.get_historical_klines(symbol, Client.KLINE_INTERVAL_1HOUR, "{} day ago UTC".format(800))
 dates = []
 
 # Curate KLINE data, fix Datetime and delete useless cols
