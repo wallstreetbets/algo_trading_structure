@@ -17,7 +17,7 @@ bm = BinanceSocketManager(client)
 symbol = "BTCUSDT"
 
 client = Client(PUBLIC_API_KEY, PRIVATE_API_KEY)
-data = client.get_historical_klines(symbol, Client.KLINE_INTERVAL_1DAY, "{} day ago UTC".format(800))
+data = client.get_historical_klines(symbol, Client.KLINE_INTERVAL_6HOUR, "{} day ago UTC".format(800))
 dates = []
 
 # Curate KLINE data, fix Datetime and delete useless cols
@@ -41,7 +41,7 @@ df['Low'] = pd.to_numeric(df['Low'])
 df['Close'] = pd.to_numeric(df['Close'])
 df['Volume'] = pd.to_numeric(df['Volume'])
 
-# Calculate formulas
+# Calculate formulas and add cols
 df['Adj Price'] = (df['High'] + df['Low']) / 2
 df['RSI'] = formulas.rsiFunc(df['Adj Price'])
 df['short_Avg'] = df['Adj Price'].rolling(window=12).mean()
