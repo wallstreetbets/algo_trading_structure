@@ -14,36 +14,6 @@ client = Client(PUBLIC_API_KEY, PRIVATE_API_KEY)
 
 bm = BinanceSocketManager(client)
 
-
-def process_message(msg):
-    if msg['e'] == 'error':
-        print("There's an error")
-    else:
-        timestamp = msg['T'] / 1000
-        timestamp = datetime.fromtimestamp(timestamp).strftime('%m-%d %H:%M:%S')
-        print(msg['p'], msg['s'], msg['q'],  timestamp)
-
-
-def kline_handle(msg):
-    if msg['e'] == 'error':
-        print("There's an error")
-    else:
-        print(msg['k']['s'], msg['k']['c'], msg['k']['n'], msg['k']['q'], msg['k']['x'])
-
-
-def socket_conn():
-    try:
-        client = Client(PUBLIC_API_KEY, PRIVATE_API_KEY)
-        bm = BinanceSocketManager(client)
-        # conn_key = bm.start_aggtrade_socket(symbol, process_message)
-        bm.start_kline_socket(symbol, kline_handle, client.KLINE_INTERVAL_1MINUTE)
-        bm.start()
-        print(client.get_asset_balance('BTC'))
-        print("Initialised successfully!")
-    except:
-        print("Error - exiting...")
-
-
 symbol = "BTCUSDT"
 
 client = Client(PUBLIC_API_KEY, PRIVATE_API_KEY)
