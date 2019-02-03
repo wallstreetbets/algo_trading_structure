@@ -54,10 +54,9 @@ def computeMACD(x, slow=26, fast=12):
     return MACD
 
 
-def VWAP(df):
-    price = (df['High'] + df['Low'] + df['Close']) / 3
-    vwap = (df['Volume'] * price).cumsum() / df['Volume'].cumsum()
-    return vwap
+def vwap(data):
+    df = data['Adj Price'] * data['Volume'].sum() / data['Volume'].sum()
+    return df
 
 
 def Bolinger_Bands(stock_price, window_size, num_of_std):
