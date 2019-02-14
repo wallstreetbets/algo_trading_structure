@@ -11,6 +11,15 @@ client = Client(PUBLIC_API_KEY, PRIVATE_API_KEY)
 bm = BinanceSocketManager(client)
 
 
+def symbols_lst():
+    return [x['symbol'] for x in client.get_all_tickers()]
+
+
+def last():
+    price = client.get_symbol_ticker(symbol="BTCUSDT")
+    return price
+
+
 def engine():
     symbol = "BTCUSDT"
 
